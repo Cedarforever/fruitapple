@@ -8,6 +8,6 @@ export const App = defineComponent({
           <div class="page">
             <RouterView />
           </div>
-      );
-    },
-  });
+      )
+    }
+  })
