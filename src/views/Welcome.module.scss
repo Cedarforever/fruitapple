@@ -1,30 +1,4 @@
-// .wrapper {
-//     height: calc(100vh - var(--welcome-nav-height));
-//     display: flex;
-//     flex-direction: column;
-//     background-image: linear-gradient(to bottom, var(--welcome-bg-start) 0%, var(--welcome-bg-end) 100%);
-//     margin-bottom: var(--welcome-nav-height);
-//   /*   渐变色 */
-//     > header {
-//       flex-shrink: 0;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: center;
-//       align-items: center;
-//       padding-top: 66px;
-//       > h1 {
-//         color: var(--welcome-text);
-//       }
-//       > img {
-//         width: 80px;
-//       }
-//     }
-//     > main {
-//       display: flex;
-//       flex-grow: 1;
-//       flex-direction: column;
-//     }
-//   }
+
 .wrapper {
   height: calc(100vh - var(--welcome-nav-height));
   display: flex;

@@ -11,7 +11,8 @@ export default defineConfig({
     vueJsx({
       transformOn: true,
       mergeProps: true
-    })
+    }),
+    svgstore()
   ],
   server:{
     host: '0.0.0.0'
