@@ -1,7 +1,7 @@
 .floatButton {
     background: var(--float-button-bg);
-    width: 56px;
-    height: 56px;
+    width: 49px;
+    height: 49px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -11,8 +11,8 @@
     right: 16px;
     
     .icon {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       fill: var(--float-button-text);
     }
   }
