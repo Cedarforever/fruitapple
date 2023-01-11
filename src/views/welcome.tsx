@@ -38,7 +38,7 @@ export const Welcome = defineComponent({
           <svg>
             <use xlinkHref="#money"></use>
           </svg>
-          <h1>山竹记账</h1>
+          <h1>记账发财</h1>
         </header>
         <main class={s.main} ref={main}>
           <RouterView name="main">
