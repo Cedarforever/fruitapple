@@ -1,42 +1,3 @@
-// // :root {
-// //     --welcome-card-bg: white;
-// //     --welcome-text: white;
-// //     --welcome-bg-start: #084866;
-// //     --welcome-bg-end: #456bb4;
-// //     --welcome-nav-height: 64px;
-// //     --welcome-nav-gap: 8px;
-// //     --z-index-bottom-nav: 10;
-// //     --transition-duration: 0.5s;
-// //     --button-bg: rgb(29, 202, 110);
-// //     --button-text: white;
-// //     --button-font-size: 18px;
-// // }
-// :root {
-//     --welcome-card-bg: white;
-//     --welcome-text: white;
-//     --welcome-bg-start: #084866;
-//     --welcome-bg-end: #456bb4;
-//     --welcome-nav-height: 64px;
-//     --welcome-nav-gap: 8px;
-//     --z-index-bottom-nav: 8; 
-//     --z-index-overlay: 16;
-//     --transition-duration: 0.5s;
-//     --button-bg: rgb(29, 202, 110);
-//     --button-text: white;
-//     --button-font-size: 18px;
-//     --button-radius: 8px;
-//     --button-height: 48px;
-//     --float-button-text: white;
-//     --float-button-bg: var(--button-bg);
-//     --navbar-bg-start: var(--welcome-bg-start);
-//     --navbar-bg-end: var(--welcome-bg-end);
-//     --navbar-text: white;
-//     --overlay-mask-bg: rgba(0, 0, 0, 0.5);
-//     --overlay-bg: white;
-//     --overlay-user-bg: #06c6dfb8;
-//     --overlay-user-text: white;
-//     --top-safe-area-height: 24px;
-//   }
 :root {
   --welcome-card-bg: white;
   --welcome-text: white;
@@ -63,4 +24,10 @@
   --overlay-user-text: white;
   --top-safe-area-height: 24px;
   --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
+  --button-border-color: #ddd;
+  --amount-text: #53A867;
+  --date-text: #999999;
+  --button-bg: white;
+  --button-bg-important: #33be7d;
+  --button-text-important:white;
 }
