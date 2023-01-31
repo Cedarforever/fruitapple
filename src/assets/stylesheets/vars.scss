@@ -1,6 +1,7 @@
 :root {
   --amount-text: #53A867;
   --button-bg: rgb(29, 202, 110);
+  --button-bg-danger: #E10505;
   --button-border-color: #ddd;
   --button-font-size: 18px;
   --button-height: 48px;
@@ -22,11 +23,13 @@
   --number-button-bg-important: #33be7d;
   --number-button-bg: white;
   --number-button-text-important:white;
+  --main: #32b152;
   --overlay-bg: white;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
   --overlay-user-bg: #06c6dfb8;
   --overlay-user-text: white;
   --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
+  --tag-bg: #EFEFEF;
   --top-safe-area-height: 24px;
   --transition-duration: 0.5s;
   --welcome-bg-end: #456bb4;
