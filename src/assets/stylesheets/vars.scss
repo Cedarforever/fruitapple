@@ -1,5 +1,6 @@
 :root {
   --amount-text: #53A867;
+  --bg: white;
   --button-bg: rgb(29, 202, 110);
   --button-bg-danger: #E10505;
   --button-border-color: #ddd;
@@ -7,6 +8,7 @@
   --button-height: 48px;
   --button-radius: 8px;
   --button-text: white;
+  --dialog-header-text: white;
   --date-text: #999999;
   --emoji-nav-text-selected: #333;
   --emoji-nav-text: #999;
@@ -17,13 +19,16 @@
   --input-min-height: 48px;
   --input-radius: var(--button-radius);
   --input-shadow: rgba(0,0,0,0.25);
+  --list-tag-text: #333;
+  --list-amount-text: var(--amount-text);
+  --list-time-text: var(--date-text);
+  --main: #32b152;
   --navbar-bg-end: var(--welcome-bg-end);
   --navbar-bg-start: var(--welcome-bg-start);
   --navbar-text: white;
   --number-button-bg-important: #33be7d;
   --number-button-bg: white;
   --number-button-text-important:white;
-  --main: #32b152;
   --overlay-bg: white;
   --overlay-mask-bg: rgba(0, 0, 0, 0.5);
   --overlay-user-bg: #06c6dfb8;
@@ -31,6 +36,10 @@
   --tabs-indicator-bg: rgba(255, 255, 255, 0.5);
   --tag-bg: #EFEFEF;
   --top-safe-area-height: 24px;
+  --total-bg: #252A43;
+  --total-text: white;
+  --total-income: #FE7275;
+  --total-expenses: #53A867;
   --transition-duration: 0.5s;
   --welcome-bg-end: #456bb4;
   --welcome-bg-start: #084866;
