@@ -1,7 +1,9 @@
 :root {
   --amount-text: #53A867;
+  --app-name-text: #7878FF;
   --bg: white;
   --text: #333;
+  --text-muted: #666;
   --button-bg: rgb(29, 202, 110);
   --button-bg-danger: #E10505;
   --button-border-color: #ddd;
@@ -51,4 +53,5 @@
   --z-index-bottom-nav: 8;
   --z-index-overlay: 16;
   --z-index-navbar: 32;
+  --bar-bg: #CCCCCC;
 }

@@ -1,0 +1,33 @@
+[33m9f1a76a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: commit: 封装overlay组件 修改vant的css变量
+[33m35c1c1a[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{1}: commit: 基本完成自定义弹窗、以及封装Form组件
+[33m5529f01[m HEAD@{2}: commit: 扩展Tabs组件 新增classprefix
+[33m52129dd[m HEAD@{3}: commit: 修复value为0的bug
+[33m4cd14b8[m HEAD@{4}: commit: 封装EmojiSelect组件
+[33medc3767[m HEAD@{5}: commit: 解决vant ui 浮层bug问题
+[33m19ac18c[m HEAD@{6}: commit: 引入vant ui 待解决浮层bug
+[33me796124[m HEAD@{7}: commit: 完成Tabs组件
+[33m49488d2[m HEAD@{8}: commit: 修改svg小bug及颜色
+[33m82437e8[m HEAD@{9}: commit: 制作Button/Center/Overlay/NavBar/FloatButton等组件
+[33m95d2710[m HEAD@{10}: commit: 实现切换路由 replace替代push 重构
+[33m55d6da3[m HEAD@{11}: commit (amend): 自制vite svg插件 动画效果 以及useSwipe
+[33ma2b2634[m HEAD@{12}: commit: 自制vite svg插件以及动画效果
+[33me716c82[m HEAD@{13}: commit: 这一次是错误提交
+[33md807744[m HEAD@{14}: commit: 重构四个页面提为WelcomeLayout
+[33m89a2a68[m HEAD@{15}: commit: 四个页面搞定了
+[33m68b4f91[m HEAD@{16}: commit: 手机调试
+[33m20e39b2[m HEAD@{17}: commit: 禁止用户缩小页面
+[33m7d666ec[m HEAD@{18}: commit: 解决edge浏览器一开始不能全屏的bug
+[33m5c8004d[m HEAD@{19}: commit: 修改默认路由
+[33m0636d4f[m HEAD@{20}: commit: 第一个欢迎界面
+[33m7597eb8[m HEAD@{21}: commit: css初始化
+[33mdf3f3cb[m HEAD@{22}: commit (amend): 创建欢迎界面的页面
+[33m24c2f44[m HEAD@{23}: commit: 创建欢迎界面的页面
+[33m638c99f[m HEAD@{24}: commit: 重构main.ts
+[33m9f132c2[m HEAD@{25}: commit: 引入vue router 4
+[33m02f82e9[m HEAD@{26}: commit: 删除无用的文件
+[33m7571fd2[m HEAD@{27}: commit: dist
+[33ma8579c1[m HEAD@{28}: commit: 删除vite里面的base
+[33m02398a7[m HEAD@{29}: commit: 重新build
+[33m3ba885a[m HEAD@{30}: commit: 新增dist
+[33m440edf2[m HEAD@{31}: Branch: renamed refs/heads/master to refs/heads/main
+[33m440edf2[m HEAD@{33}: commit (initial): 初始化
