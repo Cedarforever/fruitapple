@@ -16,6 +16,7 @@ import { SignInPage } from "../views/SignInPage";
 import { StartPage } from "../views/StartPage";
 import { StatisticsPage } from "../views/StatisticsPage";
 import { TagPage } from "../views/TagPage";
+import { http } from "../shared/Http";
 import { Welcome } from "../views/Welcome";
 
 export const routes: RouteRecordRaw[] = [
@@ -23,6 +24,9 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/welcome",
     component: Welcome,
+    beforeEnter: (to, from, next) => {
+      localStorage.getItem("skipFeatures") === "yes" ? next("/start") : next();
+    },
     children: [
       { path: "", redirect: "/welcome/1" },
       {

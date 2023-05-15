@@ -1,10 +1,16 @@
-import { defineComponent, PropType, reactive } from "vue";
+import { defineComponent, PropType, reactive, ref } from "vue";
+import axios, { AxiosResponse } from "axios";
 import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
 import { Form, FormItem } from "../shared/Form";
 import { Icon } from "../shared/Icon";
-import { validate } from "../shared/validate";
+import { hasError, validate } from "../shared/validate";
+import { http } from "../shared/Http";
 import s from "./SignInPage.module.scss";
+import { history } from "../shared/history";
+import { refreshMe } from "../shared/me";
+import { useBool } from "../hooks/useBool";
+import { useRoute, useRouter } from "vue-router";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -15,7 +21,16 @@ export const SignInPage = defineComponent({
       email: [],
       code: [],
     });
-    const onSubmit = (e: Event) => {
+    const refValidationCode = ref<any>();
+    const {
+      ref: refDisabled,
+      toggle,
+      on: disabled,
+      off: enable,
+    } = useBool(false);
+    const router = useRouter();
+    const route = useRoute();
+    const onSubmit = async (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
         email: [],
@@ -34,6 +49,32 @@ export const SignInPage = defineComponent({
           { key: "code", type: "required", message: "必填" },
         ])
       );
+      if (!hasError(errors)) {
+        const response = await http
+          .post<{ jwt: string }>("/session", formData)
+          .catch(onError);
+        console.log(response);
+        localStorage.setItem("jwt", response.data.jwt);
+        const returnTo = route.query.return_to?.toString();
+        refreshMe();
+        router.push(returnTo || "/");
+      }
+    };
+
+    const onError = (error: any) => {
+      if (error.response.status === 422) {
+        Object.assign(errors, error.response.data.errors);
+      }
+      throw error;
+    };
+    const onClickSendValidationCode = async () => {
+      disabled();
+      const response = await http
+        .post("/validation_codes", { email: formData.email })
+        .catch(onError)
+        .finally(enable);
+      // 成功
+      refValidationCode.value.startCount();
     };
     return () => (
       <MainLayout>
@@ -46,6 +87,7 @@ export const SignInPage = defineComponent({
                 <Icon class={s.icon} name="mangosteen" />
                 <h1 class={s.appName}>记账发财</h1>
               </div>
+
               <Form onSubmit={onSubmit}>
                 <FormItem
                   label="邮箱地址"
@@ -56,13 +98,17 @@ export const SignInPage = defineComponent({
                 />
                 <FormItem
                   label="验证码"
+                  ref={refValidationCode}
                   type="validationCode"
                   placeholder="请输入六位数字"
+                  countFrom={1}
+                  disabled={refDisabled.value}
+                  onClick={onClickSendValidationCode}
                   v-model={formData.code}
                   error={errors.code?.[0]}
                 />
                 <FormItem style={{ paddingTop: "96px" }}>
-                  <Button>登录</Button>
+                  <Button type="submit">登录</Button>
                 </FormItem>
               </Form>
             </div>
