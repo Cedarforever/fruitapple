@@ -8,6 +8,7 @@ import { hasError, validate } from "../shared/validate";
 import { http } from "../shared/Http";
 import s from "./SignInPage.module.scss";
 import { history } from "../shared/history";
+import { BackIcon } from "../shared/BackIcon";
 import { refreshMe } from "../shared/me";
 import { useBool } from "../hooks/useBool";
 import { useRoute, useRouter } from "vue-router";
@@ -80,7 +81,7 @@ export const SignInPage = defineComponent({
       <MainLayout>
         {{
           title: () => "登录",
-          icon: () => <Icon name="left" />,
+          icon: () => <BackIcon />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
