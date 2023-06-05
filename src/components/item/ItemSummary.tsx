@@ -6,10 +6,13 @@ import {
   ref,
   watch,
 } from "vue";
+import { RouterLink } from "vue-router";
 import { Button } from "../../shared/Button";
+import { Center } from "../../shared/Center";
 import { Datetime } from "../../shared/Datetime";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
+import { Icon } from "../../shared/Icon";
 import { Money } from "../../shared/Money";
 import s from "./ItemSummary.module.scss";
 export const ItemSummary = defineComponent({
@@ -31,12 +34,18 @@ export const ItemSummary = defineComponent({
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get<Resources<Item>>("/items", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndex",
-      });
+      const response = await http.get<Resources<Item>>(
+        "/items",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1,
+        },
+        {
+          _mock: "itemIndex",
+          _autoLoading: true,
+        }
+      );
       const { resources, pager } = response.data;
       items.value?.push(...resources);
       hasMore.value =
@@ -64,12 +73,17 @@ export const ItemSummary = defineComponent({
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get("/items/balance", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndexBalance",
-      });
+      const response = await http.get(
+        "/items/balance",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1,
+        },
+        {
+          _mock: "itemIndexBalance",
+        }
+      );
       Object.assign(itemsBalance, response.data);
     };
     onMounted(fetchItemsBalance);
@@ -86,7 +100,7 @@ export const ItemSummary = defineComponent({
     );
     return () => (
       <div class={s.wrapper}>
-        {items.value ? (
+        {items.value && items.value.length > 0 ? (
           <>
             <ul class={s.total}>
               <li>
@@ -131,9 +145,20 @@ export const ItemSummary = defineComponent({
             </div>
           </>
         ) : (
-          <div>记录为空</div>
+          <>
+            <Center class={s.pig_wrapper}>
+              <Icon name="pig" class={s.pig} />
+            </Center>
+            <div class={s.button_wrapper}>
+              <RouterLink to="/items/create">
+                <Button class={s.button}>开始记账</Button>
+              </RouterLink>
+            </div>
+          </>
         )}
-        <FloatButton iconName="add" />
+        <RouterLink to="/items/create">
+          <FloatButton iconName="add" />
+        </RouterLink>
       </div>
     );
   },

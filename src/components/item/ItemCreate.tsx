@@ -2,8 +2,8 @@ import { AxiosError } from "axios";
 import { Dialog } from "vant";
 import { defineComponent, onMounted, PropType, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { BackIcon } from "../../shared/BackIcon";
 import { MainLayout } from "../../layouts/MainLayout";
+import { BackIcon } from "../../shared/BackIcon";
 import { Button } from "../../shared/Button";
 import { http } from "../../shared/Http";
 import { Icon } from "../../shared/Icon";
@@ -38,7 +38,8 @@ export const ItemCreate = defineComponent({
     const onSubmit = async () => {
       await http
         .post<Resource<Item>>("/items", formData, {
-          params: { _mock: "itemCreate" },
+          _mock: "itemCreate",
+          _autoLoading: true,
         })
         .catch(onError);
       router.push("/items");

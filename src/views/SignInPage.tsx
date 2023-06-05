@@ -1,17 +1,17 @@
-import { defineComponent, PropType, reactive, ref } from "vue";
 import axios, { AxiosResponse } from "axios";
+import { defineComponent, PropType, reactive, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useBool } from "../hooks/useBool";
 import { MainLayout } from "../layouts/MainLayout";
+import { BackIcon } from "../shared/BackIcon";
 import { Button } from "../shared/Button";
 import { Form, FormItem } from "../shared/Form";
-import { Icon } from "../shared/Icon";
-import { hasError, validate } from "../shared/validate";
-import { http } from "../shared/Http";
-import s from "./SignInPage.module.scss";
 import { history } from "../shared/history";
-import { BackIcon } from "../shared/BackIcon";
+import { http } from "../shared/Http";
+import { Icon } from "../shared/Icon";
 import { refreshMe } from "../shared/me";
-import { useBool } from "../hooks/useBool";
-import { useRoute, useRouter } from "vue-router";
+import { hasError, validate } from "../shared/validate";
+import s from "./SignInPage.module.scss";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -52,16 +52,15 @@ export const SignInPage = defineComponent({
       );
       if (!hasError(errors)) {
         const response = await http
-          .post<{ jwt: string }>("/session", formData)
+          .post<{ jwt: string }>("/session", formData, { _autoLoading: true })
           .catch(onError);
-        console.log(response);
         localStorage.setItem("jwt", response.data.jwt);
+        // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString();
         refreshMe();
         router.push(returnTo || "/");
       }
     };
-
     const onError = (error: any) => {
       if (error.response.status === 422) {
         Object.assign(errors, error.response.data.errors);
@@ -70,8 +69,14 @@ export const SignInPage = defineComponent({
     };
     const onClickSendValidationCode = async () => {
       disabled();
-      const response = await http
-        .post("/validation_codes", { email: formData.email })
+      await http
+        .post(
+          "/validation_codes",
+          { email: formData.email },
+          {
+            _autoLoading: true,
+          }
+        )
         .catch(onError)
         .finally(enable);
       // 成功
@@ -86,9 +91,8 @@ export const SignInPage = defineComponent({
             <div class={s.wrapper}>
               <div class={s.logo}>
                 <Icon class={s.icon} name="mangosteen" />
-                <h1 class={s.appName}>记账发财</h1>
+                <h1 class={s.appName}>山竹记账</h1>
               </div>
-
               <Form onSubmit={onSubmit}>
                 <FormItem
                   label="邮箱地址"
@@ -98,8 +102,8 @@ export const SignInPage = defineComponent({
                   error={errors.email?.[0]}
                 />
                 <FormItem
-                  label="验证码"
                   ref={refValidationCode}
+                  label="验证码"
                   type="validationCode"
                   placeholder="请输入六位数字"
                   countFrom={1}

@@ -4,10 +4,12 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
+import { Toast } from "vant";
 import {
   mockItemCreate,
   mockItemIndex,
   mockItemIndexBalance,
+  mockItemSummary,
   mockSession,
   mockTagEdit,
   mockTagIndex,
@@ -74,7 +76,7 @@ const mock = (response: AxiosResponse) => {
   ) {
     return false;
   }
-  switch (response.config?.params?._mock) {
+  switch (response.config?._mock) {
     case "tagIndex":
       [response.status, response.data] = mockTagIndex(response.config);
       return true;
@@ -96,6 +98,9 @@ const mock = (response: AxiosResponse) => {
     case "itemIndexBalance":
       [response.status, response.data] = mockItemIndexBalance(response.config);
       return true;
+    case "itemSummary":
+      [response.status, response.data] = mockItemSummary(response.config);
+      return true;
   }
   return false;
 };
@@ -107,8 +112,30 @@ http.instance.interceptors.request.use((config) => {
   if (jwt) {
     config.headers!.Authorization = `Bearer ${jwt}`;
   }
+  if (config._autoLoading === true) {
+    Toast.loading({
+      message: "加载中...",
+      forbidClick: true,
+      duration: 0,
+    });
+  }
   return config;
 });
+
+http.instance.interceptors.response.use(
+  (response) => {
+    if (response.config._autoLoading === true) {
+      Toast.clear();
+    }
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.response?.config._autoLoading === true) {
+      Toast.clear();
+    }
+    throw error;
+  }
+);
 
 http.instance.interceptors.response.use(
   (response) => {
