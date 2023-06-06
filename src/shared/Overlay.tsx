@@ -1,6 +1,6 @@
 import { Dialog } from "vant";
 import { defineComponent, onMounted, PropType, ref } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { useMeStore } from "../stores/useMeStore";
 import { Icon } from "./Icon";
 import s from "./Overlay.module.scss";
@@ -11,6 +11,7 @@ export const Overlay = defineComponent({
     },
   },
   setup: (props, context) => {
+    const router = useRouter();
     const meStore = useMeStore();
     const close = () => {
       props.onClose?.();
@@ -27,6 +28,7 @@ export const Overlay = defineComponent({
         message: "你真的要退出登录吗？",
       });
       localStorage.removeItem("jwt");
+      router.push("/sign_in");
     };
     return () => (
       <>
