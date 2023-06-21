@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from "vue";
-import { Navbar } from "../shared/Navbar";
+import { Navbar } from "../shared/NavBar";
 import s from "./MainLayout.module.scss";
 export const MainLayout = defineComponent({
   setup: (props, context) => {
